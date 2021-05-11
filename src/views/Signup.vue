@@ -21,12 +21,15 @@
       </div>
     </div>
   </div>
+
+  <SignUpUser/>
 </template>
 
 <script>
 //import axios from 'axios'
 import PAYS from "@/assets/pays.json"
 //import COMMUNES from "@/assets/communes.json"
+import SignUpUser from "@/components/SignUpUser.vue"
 import charfield from "@/components/form/charfield.vue"
 import selectfield from "@/components/form/selectfield.vue"
 

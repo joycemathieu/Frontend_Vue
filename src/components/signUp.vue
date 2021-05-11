@@ -44,12 +44,6 @@
                   required
                 />
               </div>
-              <!--<div class="input_field radio_option">
-                <input type="radio" name="radiogroup1" id="rd1" />
-                <label for="rd1">Intérimaire</label>
-                <input type="radio" name="radiogroup1" id="rd2" />
-                <label for="rd2">Client</label>
-              </div> -->
               <input class="button" type="submit" value="S'identifier" />
             </form>
           </div>
