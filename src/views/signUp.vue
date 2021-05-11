@@ -6,7 +6,7 @@
         <charfield label="Nom de jeune-fille" name="nom_jf" v-on:value_change="updateValue"/>
         <charfield label="Prenom" name="prenom" v-on:value_change="updateValue"/>
         <charfield label="Autre Prenoms" name="prenom_autre" v-on:value_change="updateValue"/>
-        <charfield label="Lieu de Naissance" name="lieu_naissance" v-on:value_change="updateValue"/>
+        <charfield label="Lieu de Naissance" name="lieu_naissance" placeholder="..." v-on:value_change="updateValue"/>
 
         <selectfield label="Sex" name="sex"  :options="sex_options" :choices="sex_choices" v-on:value_change="updateValue"/>
         <selectfield label="Nationalité" name="nationalite" :options="pays_options" :choices="pays.data" v-on:value_change="updateValue"/>
@@ -20,7 +20,11 @@
         <!-- <p>{{communes.schema.fields}}</p> -->
       </div>
     </div>
-    <SignUpUser/>
+    <div class="columns">
+      <div class="column is-6 is-offset-3">
+        <SignUpUser/>
+      </div>
+    </div>
   </div>
 
 
@@ -69,9 +73,7 @@ export default {
   },
   methods: {
     updateValue: function(data) {
-
       this[data.name] = data.value
-
     },
     populate_data: function() {
       this.pays = JSON.parse(JSON.stringify(PAYS))

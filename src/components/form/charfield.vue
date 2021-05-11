@@ -7,7 +7,7 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <input class="input" type="text" :name="name" v-model="value" v-on:change="sendValue">
+            <input class="input" type="text" :name="name" v-model="value" v-on:change="sendValue" :placeholder="placeholder">
           </div>
         </div>
       </div>
