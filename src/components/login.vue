@@ -1,4 +1,5 @@
 <template>
+  <!-- A clean !!! -->
   <div class="login">
     <div class="field">
       <div class="control">
@@ -39,7 +40,19 @@
 </template>
 <script>
 export default {
-  name: "login",
-  props: {},
-};
+  name: 'Login',
+  props: {
+  },
+  data () {
+    return {
+      username: "",
+      password: "",
+    }
+  },
+  methods : {
+    submitForm: function () {
+      alert("submitForm: " + this.username + " " + this.password)
+    }
+  }
+}
 </script>
