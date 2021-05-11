@@ -9,13 +9,8 @@
 </template>
 
 <script>
-import { validationMixin } from 'vuelidate'
-  import {
-    required,
-  } from 'vuelidate/lib/validators'
 export default {
     name:'FieldForm',
-    mixins: [validationMixin],
     props:{
         attrField:{
             type:String,
@@ -32,13 +27,6 @@ export default {
                 fieldValue:null,
             },
             sending: false,
-        }
-    },
-    validations:{
-        form:{
-            attrField:{
-                required,
-            }
         }
     },
     methods:{

@@ -14,7 +14,7 @@
         </div>
       
         <div class="md-layout-item">
-          <FieldForm attrField="tel" label="Tel"/>
+          <FieldForm attrField="tel" label="Tel" @input="setName($event.target.value)" filedValue="form.filedValue"/>
           <FieldForm attrField="email" label="Email"/>
           <FieldForm attrField="Rue" label="Rue"/>
           <FieldForm attrField="Quartier" label="Quartier"/>
@@ -35,6 +35,9 @@
 
 <script>
 import { validationMixin } from 'vuelidate'
+import {
+required,
+} from 'vuelidate/lib/validators'
 import FieldForm from './fields/FieldFormBasic'
 import FielFormExtend from './fields/FieldFormExtend'
 import FieldFormDate from './fields/FieldFormDate'
@@ -50,12 +53,26 @@ import FieldFormDate from './fields/FieldFormDate'
       userSaved: false,
       sending: false,
       lastUser: null,
-
+      fieldValue:'',
+      form:{
+        filedValue:null,
+      }
     }),
+    validations:{
+      fieldValue:{
+        required,
+
+      }
+    },
     methods: {
       done(){
         console.log(this.$v);
       },
+    setName(value) {
+      this.fieldValue = value;
+      console.log(this.fieldValue);
+      this.$v.fieldValue.$touch();
+    },
       clearForm () {
         this.$v.$reset()
         this.form.firstName = null
