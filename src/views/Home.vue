@@ -5,7 +5,7 @@
 </template>
 
 <script>
-// @ is an alias to /src
+
 import Login from '@/components/login.vue'
 
 export default {
