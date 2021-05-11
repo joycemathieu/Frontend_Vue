@@ -20,9 +20,10 @@
         <!-- <p>{{communes.schema.fields}}</p> -->
       </div>
     </div>
+    <SignUpUser/>
   </div>
 
-  <SignUpUser/>
+
 </template>
 
 <script>
@@ -36,7 +37,7 @@ import selectfield from "@/components/form/selectfield.vue"
 export default {
   name: 'Signup',
   components: {
-    charfield, selectfield,
+    charfield, selectfield, SignUpUser
   },
   data: () => {
     return {
