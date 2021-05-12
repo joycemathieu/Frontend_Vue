@@ -14,11 +14,6 @@
 
       </div>
 
-      <!-- test -->
-      <div class="column is-3">
-        <p>{{pays.schema.fields}}</p>
-        <!-- <p>{{communes.schema.fields}}</p> -->
-      </div>
     </div>
     <div class="columns">
       <div class="column is-6 is-offset-3">

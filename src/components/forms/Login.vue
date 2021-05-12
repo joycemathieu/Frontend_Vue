@@ -35,7 +35,7 @@
         </md-card-actions>
       </md-card>
 
-      <md-snackbar :md-active.sync="userSaved">Vous ête connecté avec succès !</md-snackbar>
+      <md-snackbar :md-active.sync="userSaved">Vous êtes connecté avec succès !</md-snackbar>
     </form>
   </div>
 </template>
