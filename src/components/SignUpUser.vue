@@ -4,22 +4,26 @@
       <md-step id="first" md-label="First Step" md-description="Optional" :md-done.sync="first">
 
         <Form v-on:changePage="setDone('first','second')"/>
+        <input type="radio" v-model="user_type" value="Interimaire">
+        <input type="radio" v-model="user_type" value="Client">
+        {{user_type}}
         <md-button class="md-raised md-primary" @click="setDone('first', 'second')">Continue</md-button>
       </md-step>
 
       <md-step id="second" md-label="Second Step" :md-error="secondStepError" :md-done.sync="second">
-        <div class="" v-if=>
-          <h1>INTERIMAIRE</h1>
-          <md-button class="md-raised md-primary" @click="setDone('second', 'third')">Continue</md-button>
-          <md-button class="md-raised md-primary" @click="setError()">Set error!</md-button>
-        </div>
+        
+          <div v-if="user_type == 'Interimaire'">
+            <h1>INTERIMAIRE</h1>
+            <md-button class="md-raised md-primary" @click="setDone('second', 'third')">Continue</md-button>
+            <md-button class="md-raised md-primary" @click="setError()">Set error!</md-button>
+          </div>
 
-        <div class="">
-          <h1>CLIENT</h1>
-          <md-button class="md-raised md-primary" @click="setDone('second', 'third')">Continue</md-button>
-          <md-button class="md-raised md-primary" @click="setError()">Set error!</md-button>
-        </div>
-
+          <div v-if="user_type == 'Client'">
+            <h1>CLIENT</h1>
+            <md-button class="md-raised md-primary" @click="setDone('second', 'third')">Continue</md-button>
+            <md-button class="md-raised md-primary" @click="setError()">Set error!</md-button>
+          </div>
+        
       </md-step>
 
       <md-step id="third" md-label="Third Step" :md-done.sync="third">
@@ -43,7 +47,8 @@ import Form from './forms/form'
       first: false,
       second: false,
       third: false,
-      secondStepError: null
+      secondStepError: null,
+      user_type: "Interimaire",
     }),
     methods: {
       setDone (id, index) {

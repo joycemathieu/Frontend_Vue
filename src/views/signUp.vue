@@ -1,18 +1,6 @@
 <template>
   <div class="Signup">
     <div class="columns">
-      <div class="column is-6 is-offset-3">
-        <charfield label="Nom" name="nom" v-on:value_change="updateValue"/>
-        <charfield label="Nom de jeune-fille" name="nom_jf" v-on:value_change="updateValue"/>
-        <charfield label="Prenom" name="prenom" v-on:value_change="updateValue"/>
-        <charfield label="Autre Prenoms" name="prenom_autre" v-on:value_change="updateValue"/>
-        <charfield label="Lieu de Naissance" name="lieu_naissance" placeholder="..." v-on:value_change="updateValue"/>
-
-        <selectfield label="Sex" name="sex"  :options="sex_options" :choices="sex_choices" v-on:value_change="updateValue"/>
-        <selectfield label="Nationalité" name="nationalite" :options="pays_options" :choices="pays.data" v-on:value_change="updateValue"/>
-
-
-      </div>
 
     </div>
     <div class="columns">
@@ -30,13 +18,11 @@
 import PAYS from "@/assets/pays.json"
 //import COMMUNES from "@/assets/communes.json"
 import SignUpUser from "@/components/SignUpUser.vue"
-import charfield from "@/components/form/charfield.vue"
-import selectfield from "@/components/form/selectfield.vue"
 
 export default {
   name: 'Signup',
   components: {
-    charfield, selectfield, SignUpUser
+    SignUpUser
   },
   data: () => {
     return {

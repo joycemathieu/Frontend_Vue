@@ -27,7 +27,6 @@ export default {
                 fieldValue:null,
             },
             sending: false,
-            label: "potato"
         }
     },
     methods:{
