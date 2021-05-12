@@ -4,13 +4,13 @@
       <div class="md-title">Users</div>
       <div class="md-layout md-gutter">
         <div class="md-layout-item">
-          <FielFormExtend 
+          <FieldForm 
             name="prenom" 
             label="prenom" 
             type="text"
             @valueChange="updateValue"
           />
-          <FielFormExtend 
+          <FieldForm 
             name="nom" 
             label="nom"
             type="text"
@@ -20,7 +20,7 @@
             name="genre"
             @valueChange="updateValue"
           />
-          <FielFormExtend 
+          <FieldForm 
             name="nomDeJeuneFille" 
             label="Nom de jeune fille"
             type="text"
@@ -31,7 +31,7 @@
             type="date" 
             @valueChange="updateValue"
           />
-          <FielFormExtend 
+          <FieldForm 
             name="lieuDeNaissance" 
             label="Lieu de Naissance"
             type="text" 
@@ -93,7 +93,6 @@ minLength,
 maxLength,
 } from 'vuelidate/lib/validators'
 import FieldForm from './fields/FieldFormBasic'
-import FielFormExtend from './fields/FieldFormExtend'
 import FieldFormDate from './fields/FieldFormDate'
 import FieldFormSelect from './fields/FieldFormSelect'
   export default {
@@ -101,7 +100,6 @@ import FieldFormSelect from './fields/FieldFormSelect'
     mixins: [validationMixin],
     components:{
       FieldForm,
-      FielFormExtend,
       FieldFormDate,
       FieldFormSelect,
     },

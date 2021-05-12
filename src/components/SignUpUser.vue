@@ -2,17 +2,15 @@
   <div>
     <md-steppers :md-active-step.sync="active" md-linear>
       <md-step id="first" md-label="First Step" md-description="Optional" :md-done.sync="first">
-        <Form v-on:changePage="setDone('first','second')"/>
+        <Formgeneral v-on:changePage="setDone('first','second')"/>
         <md-button class="md-raised md-primary" @click="setDone('first', 'second')">Continue</md-button>
       </md-step>
 
       <md-step id="second" md-label="Second Step" :md-error="secondStepError" :md-done.sync="second">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias doloribus eveniet quaerat modi cumque quos sed, temporibus nemo eius amet aliquid, illo minus blanditiis tempore, dolores voluptas dolore placeat nulla.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias doloribus eveniet quaerat modi cumque quos sed, temporibus nemo eius amet aliquid, illo minus blanditiis tempore, dolores voluptas dolore placeat nulla.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias doloribus eveniet quaerat modi cumque quos sed, temporibus nemo eius amet aliquid, illo minus blanditiis tempore, dolores voluptas dolore placeat nulla.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias doloribus eveniet quaerat modi cumque quos sed, temporibus nemo eius amet aliquid, illo minus blanditiis tempore, dolores voluptas dolore placeat nulla.</p>
+        
+        <Form v-on:changePage="setDone('first','second')"/>
+
         <md-button class="md-raised md-primary" @click="setDone('second', 'third')">Continue</md-button>
-        <md-button class="md-raised md-primary" @click="setError()">Set error!</md-button>
       </md-step>
 
       <md-step id="third" md-label="Third Step" :md-done.sync="third">
@@ -26,10 +24,12 @@
 
 <script>
 import Form from './forms/form'
+import Formgeneral from './forms/formGeneral'
   export default {
     name: 'StepperLinear',
     components:{
       Form,
+      Formgeneral
     },
     data: () => ({
       active: 'first',
