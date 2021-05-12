@@ -1,85 +1,84 @@
 <template>
   <div>
-    <form novalidate  @submit.prevent="validateUser">
-      <div class="md-title">Users</div>
-      <div class="md-layout md-gutter">
+    <form novalidate class="md-layout md-alignement-center-center"  @submit.prevent="validateUser">
+      <h3 class="md-title"> Informations générales </h3>
+      <md-divider></md-divider>
+
         <div class="md-layout-item">
           <FieldForm 
             name="prenom" 
-            label="prenom" 
+            label="Prénom" 
             type="text"
             @valueChange="updateValue"
+            :validationField=$v.user
           />
           <FieldForm 
             name="nom" 
-            label="nom"
+            label="Nom"
             type="text"
             @valueChange="updateValue"
+            :validationField=$v.user
           />
           <FieldFormSelect 
             name="genre"
+            label="Genre"
             @valueChange="updateValue"
+            :validationField=$v.user
           />
           <FieldForm 
             name="nomDeJeuneFille" 
             label="Nom de jeune fille"
             type="text"
-            @valueChange="updateValue"  
+            @valueChange="updateValue"
+            :validationField=$v.user  
           />
-          <FieldFormDate 
-            label="dateNaissance"
+          <FieldFormDate
+            name="dateNaissance" 
+            label="Date de naissance"
             type="date" 
             @valueChange="updateValue"
+            :validationField=$v.user
           />
           <FieldForm 
             name="lieuDeNaissance" 
             label="Lieu de Naissance"
             type="text" 
             @valueChange="updateValue"
+            :validationField=$v.user
           />
-          
-        </div>
-      
-        <div class="md-layout-item" @click="done">
           <FieldForm 
             name="tel"
-            label="tel" 
+            label="Téléphone" 
             type="tel"
             @valueChange="updateValue"
-          />
-          <FieldForm 
-            name="email" 
-            label="Email"
-            type="email" 
-            @valueChange="updateValue" 
-            @click="getValidationClass (email)"
+            :validationField=$v.user
           />
           <FieldForm 
             name="rue" 
             label="Rue" 
             type="text" 
             @valueChange="updateValue"
+            :validationField=$v.user
           />
           <FieldForm 
             name="quartier" 
             label="Quartier" 
             type="text" 
             @valueChange="updateValue"
+            :validationField=$v.user
           />
           <FieldForm 
             name="codePostal" 
             label="Code Postal"
             type="number" 
             @valueChange="updateValue"
-          />
+            :validationField=$v.user
+          />   
+          <md-button type="submit" class="md-primary">Suivant</md-button> <!-- Le bouton submit ne valide pas tout Probleme avec le fieldDate ! -->
         </div>
-      
-        <md-progress-bar md-mode="indeterminate" v-if="sending" />
-
-        <md-card-actions>
-            <md-button type="submit" class="md-primary">Suivant</md-button>
-        </md-card-actions>
-    </div>
+    
+      <md-progress-bar md-mode="indeterminate" v-if="sending" /> <!-- Ne fonctionne plus ! :( -->
+      <md-snackbar :md-active.sync="userSaved">Vous avez validé cette étape avec success !!</md-snackbar>
     </form>
   </div>
 </template>
@@ -103,6 +102,11 @@ import FieldFormSelect from './fields/FieldFormSelect'
       FieldFormDate,
       FieldFormSelect,
     },
+    props:{
+      changePage:{
+        type:Function,
+      }
+    },
     data: () => ({
       userSaved: false,
       sending: false,
@@ -119,18 +123,17 @@ import FieldFormSelect from './fields/FieldFormSelect'
         rue:'',
         quartier:'',
         codePostal:'',
-        
       },
     }),
     validations:{
       user:{
         prenom:{
           required,
-          minLength:minLength(4)
+          minLength:minLength(4)// Instaurer le message d'erreur if attr minlength  != null dans composant field form basic
         },
         nom:{
           required,
-          minLength:minLength(4)
+          minLength:minLength(4)// Instaurer le message d'erreur if attr minlength  != null dans composant field form basic
         },
         genre:{
           required,
@@ -145,7 +148,7 @@ import FieldFormSelect from './fields/FieldFormSelect'
         },
         tel:{
           required,
-          maxLength:maxLength(7)
+          maxLength:maxLength(7) // Instaurer le message d'erreur if attr maxlength  != null dans composant field form basic
         },
         email:{
           required,
@@ -159,19 +162,17 @@ import FieldFormSelect from './fields/FieldFormSelect'
         },
         codePostal:{
           required,
+          maxLength:maxLength(5)// Instaurer le message d'erreur if attr maxlength  != null dans composant field form basic
         },
         
       }
     },
     methods: {
-      done(){
-        console.log(this.$v);
-      },
       updateValue(data) {
-        this.user[data.name] = data.value
+        this.user[data.name] = data.value; // permet de remonter la valeur de l'input de l'enfant aux parents pour validation
       },
-      clearForm () {
-        this.$v.$reset()
+      changePAge(){
+        this.changePage();
       },
       saveUser () {
         this.sending = true
@@ -180,23 +181,13 @@ import FieldFormSelect from './fields/FieldFormSelect'
       window.setTimeout(() => {
           this.userSaved = true
           this.sending = false
-          this.clearForm()
         }, 1500)
       },
       validateUser () {
         this.$v.$touch()
-        console.log(this.$v);
         if (!this.$v.$invalid) {
-          this.saveUser()
-        }
-      },
-      getValidationClass (fieldName) {
-        const field = this.$v.user[fieldName]
-        console.log(this.$v.form);
-        if (field) {
-          return {
-            'md-invalid': field.$invalid && field.$dirty
-          }
+          this.changePAge();
+          this.saveUser();
         }
       },
     },

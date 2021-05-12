@@ -1,9 +1,9 @@
 <template>
     <div>
-        <md-field>
+        <md-field :class="getValidationClass(name)" >
             <label :for="name"> {{ label }} </label>
             <md-input :type="type" :id="name" :name="name" v-model="value" :autocomplete="name" @change="sendValue" />
-            <!--<span class="md-error" v-if="!validation.fieldValue.required">Ce champ est obligatoire</span>-->
+            <span class="md-error" v-if="ifError(name)">Le champ  {{ label }} est requis !</span>
         </md-field>
     </div>
 </template>
@@ -20,6 +20,9 @@ export default {
         },
         type:{
             type:String,
+        },
+        validationField:{
+            type:Object
         }
     },
     data(){
@@ -30,6 +33,17 @@ export default {
     methods:{
         sendValue() {
             this.$emit("valueChange", {value: this.value, name: this.name})
+        },
+        getValidationClass (fieldName) {
+            const field = this.validationField[fieldName];
+
+          return {'md-invalid': field.$invalid && field.$dirty}
+        },
+        ifError(fieldName){
+            const error = this.validationField[fieldName].required;
+            if(!error){
+                return true;
+            }
         }
     }
 }

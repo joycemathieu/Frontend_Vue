@@ -1,34 +1,46 @@
 <template>
     <div>
-        <md-datepicker v-model="value" @change="sendValue">
+        <md-datepicker  v-model="value" @change="sendValue" :class="getValidationClass(name)">
             <label> {{ label }} </label>
-            <!--<span class="md-error" v-if="!$v.form.date.required">Ce champ est obligatoire</span>-->
+            <span class="md-error" v-if="ifError(name)">Veuillez insérer une date !</span>
         </md-datepicker>
-        <p> {{ this.valueFormat }} </p>
     </div>
 </template>
 
 <script>
-import format from 'date-fns/format'
 export default {
     name:'FieldFormDate',
     props:{
         label:{
             type:String,
         },
+        validationField:{
+            type:Object,
+        },
+        name:{
+            type:String
+        }
     },
     data(){
         return{
             value:null,
-            valueFormat:'',
-        }
+        }   
     },
     methods:{
         sendValue() {
-            let dateFormat = this.$material.locale.dateFormat || 'yyyy-MM-dd';
-            this.valueFormat = format(this.value,dateFormat)
-            this.$emit("valueChange", {value: this.valueFormat, name: this.name})
-        }
+            this.$emit("valueChange", {value: this.value, name: this.name})
+        },
+        getValidationClass (fieldName) {
+            const field = this.validationField[fieldName];
+
+          return {'md-invalid': field.$invalid && field.$dirty}
+        },
+        ifError(fieldName){
+            const error = this.validationField[fieldName].required;
+            if(!error){
+                return true;
+            }
+        },
     }
 }
 </script>
