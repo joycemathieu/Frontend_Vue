@@ -29,7 +29,7 @@ import Form from './forms/form'
   export default {
     name: 'StepperLinear',
     components:{
-        Form,
+      Form,
     },
     data: () => ({
       active: 'first',

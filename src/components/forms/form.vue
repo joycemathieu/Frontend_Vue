@@ -4,30 +4,81 @@
       <div class="md-title">Users</div>
       <div class="md-layout md-gutter">
         <div class="md-layout-item">
-          <FielFormExtend attrField="firstName" label="Prenom"/>
-          <FielFormExtend attrField="lastName" label="Nom"/>
-          <!-- Trouver moyen de passer verif seulement si le genre femme est coché -->
-          <FielFormExtend attrField="lastNameGirl" label="Nom de jeune fille"/>
-
-          <FieldFormDate label="Date de naissance"/>
-          <FielFormExtend attrField="lieuDeNaissance" label="Lieu de Naissance"/>
+          <FielFormExtend 
+            name="prenom" 
+            label="prenom" 
+            type="text"
+            @valueChange="updateValue"
+          />
+          <FielFormExtend 
+            name="nom" 
+            label="nom"
+            type="text"
+            @valueChange="updateValue"
+          />
+          <FieldFormSelect 
+            name="genre"
+            @valueChange="updateValue"
+          />
+          <FielFormExtend 
+            name="nomDeJeuneFille" 
+            label="Nom de jeune fille"
+            type="text"
+            @valueChange="updateValue"  
+          />
+          <FieldFormDate 
+            label="dateNaissance"
+            type="date" 
+            @valueChange="updateValue"
+          />
+          <FielFormExtend 
+            name="lieuDeNaissance" 
+            label="Lieu de Naissance"
+            type="text" 
+            @valueChange="updateValue"
+          />
+          
         </div>
       
-        <div class="md-layout-item">
-          <FieldForm attrField="tel" label="Tel" @input="setName($event.target.value)" filedValue="form.filedValue"/>
-          <FieldForm attrField="email" label="Email"/>
-          <FieldForm attrField="Rue" label="Rue"/>
-          <FieldForm attrField="Quartier" label="Quartier"/>
-          <FieldForm attrField="Code Postal" label="Code Postal"/>
+        <div class="md-layout-item" @click="done">
+          <FieldForm 
+            name="tel"
+            label="tel" 
+            type="tel"
+            @valueChange="updateValue"
+          />
+          <FieldForm 
+            name="email" 
+            label="Email"
+            type="email" 
+            @valueChange="updateValue" 
+            @click="getValidationClass (email)"
+          />
+          <FieldForm 
+            name="rue" 
+            label="Rue" 
+            type="text" 
+            @valueChange="updateValue"
+          />
+          <FieldForm 
+            name="quartier" 
+            label="Quartier" 
+            type="text" 
+            @valueChange="updateValue"
+          />
+          <FieldForm 
+            name="codePostal" 
+            label="Code Postal"
+            type="number" 
+            @valueChange="updateValue"
+          />
         </div>
       
         <md-progress-bar md-mode="indeterminate" v-if="sending" />
 
         <md-card-actions>
-            <md-button type="submit" @click="done" class="md-primary" :disabled="sending">Suivant</md-button>
+            <md-button type="submit" class="md-primary">Suivant</md-button>
         </md-card-actions>
-
-        <md-snackbar :md-active.sync="userSaved">Bien joué {{ lastUser }} ,vous pouvez passer a l'étape suivante !</md-snackbar>
     </div>
     </form>
   </div>
@@ -37,10 +88,14 @@
 import { validationMixin } from 'vuelidate'
 import {
 required,
+email,
+minLength,
+maxLength,
 } from 'vuelidate/lib/validators'
 import FieldForm from './fields/FieldFormBasic'
 import FielFormExtend from './fields/FieldFormExtend'
 import FieldFormDate from './fields/FieldFormDate'
+import FieldFormSelect from './fields/FieldFormSelect'
   export default {
     name: 'FormValidation',
     mixins: [validationMixin],
@@ -48,44 +103,83 @@ import FieldFormDate from './fields/FieldFormDate'
       FieldForm,
       FielFormExtend,
       FieldFormDate,
+      FieldFormSelect,
     },
     data: () => ({
       userSaved: false,
       sending: false,
       lastUser: null,
-      fieldValue:'',
-      form:{
-        filedValue:null,
-      }
+      user:{
+        prenom:'',
+        nom:'',
+        genre:'',
+        nomDeJeuneFille:'',
+        dateNaissance:'',
+        lieuDeNaissance:'',
+        tel:'',
+        email:'',
+        rue:'',
+        quartier:'',
+        codePostal:'',
+        
+      },
     }),
     validations:{
-      fieldValue:{
-        required,
-
+      user:{
+        prenom:{
+          required,
+          minLength:minLength(4)
+        },
+        nom:{
+          required,
+          minLength:minLength(4)
+        },
+        genre:{
+          required,
+        },
+        nomDeJeuneFille:{
+        },
+        dateNaissance:{
+          required,
+        },
+        lieuDeNaissance:{
+          required,
+        },
+        tel:{
+          required,
+          maxLength:maxLength(7)
+        },
+        email:{
+          required,
+          email,
+        },
+        rue:{
+          required,
+        },
+        quartier:{
+          required,
+        },
+        codePostal:{
+          required,
+        },
+        
       }
     },
     methods: {
       done(){
         console.log(this.$v);
       },
-    setName(value) {
-      this.fieldValue = value;
-      console.log(this.fieldValue);
-      this.$v.fieldValue.$touch();
-    },
+      updateValue(data) {
+        this.user[data.name] = data.value
+      },
       clearForm () {
         this.$v.$reset()
-        this.form.firstName = null
-        this.form.lastName = null
-        this.form.genre = null
-        this.form.email = null
       },
       saveUser () {
         this.sending = true
 
         // Instead of this timeout, here you can call your API
-        window.setTimeout(() => {
-          this.lastUser = `${this.form.firstName} ${this.form.lastName}`
+      window.setTimeout(() => {
           this.userSaved = true
           this.sending = false
           this.clearForm()
@@ -93,11 +187,20 @@ import FieldFormDate from './fields/FieldFormDate'
       },
       validateUser () {
         this.$v.$touch()
-
+        console.log(this.$v);
         if (!this.$v.$invalid) {
           this.saveUser()
         }
-      }
+      },
+      getValidationClass (fieldName) {
+        const field = this.$v.user[fieldName]
+        console.log(this.$v.form);
+        if (field) {
+          return {
+            'md-invalid': field.$invalid && field.$dirty
+          }
+        }
+      },
     },
   }
 </script>

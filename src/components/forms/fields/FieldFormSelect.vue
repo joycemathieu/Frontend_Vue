@@ -1,51 +1,35 @@
 <template>
     <div>
-        <md-field :class="getValidationClass('genre')">
+        <md-field>
             <label for="Genre">Genre</label>
-            <md-select name="Genre" id="Genre" v-model="form.fieldValue" md-dense :disabled="sending">
+            <md-select name="Genre" id="Genre" v-model="value" md-dense @change="sendValue">
             <md-option></md-option>
             <md-option value="Homme">Homme</md-option>
             <md-option value="Femme">Femme</md-option>
             <md-option value="Autre">Autres</md-option>
             </md-select>
-            <span class="md-error">Ce champ est obligatoire</span>
         </md-field>
 
     </div>
 </template>
 
 <script>
-import { validationMixin } from 'vuelidate'
-import {
-    required,
-} from 'vuelidate/lib/validators'
 export default {
     name:'FieldFormSelect',
-    mixins: [validationMixin],
+    props:{
+        name:{
+            type:String,
+        },
+    },
     data(){
         return{
-            form:{
-                fieldValue:null,
-            }
-        }
-    },
-    validations:{
-        form:{
-            genre:{
-                required,
-            }
+            value:'',
         }
     },
     methods:{
-        getValidationClass (fieldName) {
-        const field = this.$v.form[fieldName]
-        console.log(field);
-        if (field) {
-          return {
-            'md-invalid': field.$invalid && field.$dirty
-          }
+        sendValue() {
+            this.$emit("valueChange", {value: this.value, name: this.name})
         }
-      },
     }
 }
 </script>
