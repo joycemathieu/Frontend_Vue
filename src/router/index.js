@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import SignUp from '../views/signUp'
-import interimaire from '../views/interimaire'
+import SignUp from '../views/Signup.vue'
+import interimaire from '../views/interimaire.vue'
+import Test from '../views/test.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -18,7 +19,12 @@ const routes = [
   {
     path: '/interimaire',
     component:interimaire,
-  }
+  },
+  {
+    path: '/test',
+    name: 'Test',
+    component: Test
+  },
 ]
 
 const router = new VueRouter({

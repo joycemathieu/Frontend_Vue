@@ -24,7 +24,7 @@
                 @valueChange="updateValue"
                 :validationField=$v.user
             />
-            <FieldForm 
+            <FieldForm
                 name="confirmMotDePasse"
                 label="Confirmer mot de passe"
                 type="password"
@@ -79,7 +79,7 @@ export default {
             confirmMotDePasse:{
                 required,
                 sameAsPassword: sameAs('motDePasse')    // verifie si sa martch entre les deux champs password !
-                
+
             }
         }
     },
@@ -88,12 +88,8 @@ export default {
             this.user[data.name] = data.value; // permet de remonter la valeur de l'input de l'enfant aux parents pour validation
         },
         saveUser () {
-            this.sending = true
-
-            // Instead of this timeout, here you can call your API
-            window.setTimeout(() => {
-            this.userSaved = true
-            }, 1500)
+            // save to store for each step
+            // concat all stored users at the end of the stepper
         },
         validateUser () {
             this.$v.$touch()
