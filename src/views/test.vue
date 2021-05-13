@@ -1,32 +1,65 @@
 <template>
-  <div class="home">
-
-    <div class="md-layout md-gutter">
-      <div class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100">
-        <md-content class="md-primary">1</md-content>
-      </div>
-      <div class="md-layout-item">
-        <md-content class="md-primary">2</md-content>
-      </div>
-      <div class="md-layout-item">
-        <md-content class="md-primary">3</md-content>
-      </div>
-      <div class="md-layout-item md-size-15">
-        <md-content class="md-primary">4</md-content>
-      </div>
-
-
-    </div>
+  <div class="test">
+    <iField v-for="field in fields" :field="field" v-bind:key="field.name" v-on:validated="saveValue"/>
   </div>
 </template>
 
 <script>
-//import test from "@/components/test_compo.vue"
-
+import iField from "@/components/__dead__/i+_field.vue"
+import { required, minLength } from 'vuelidate/lib/validators'
 export default {
-  name: 'Home',
+  name: 'Test',
+  data: () => {
+    return {
+      value: "",
+      fields: [
+        {
+          input_type: "text",
+          name: "nom",
+          label: "Nom",
+          placeholder: "Smith",
+          msg: {
+            errors: {
+              required: "Le champs est requis",
+              minLength: "Le champ doit contenir plus de " + String(3) + " characteres",
+            },
+            success: "Lui le vrai.",
+            helper: "Tape sur le clavier"
+          },
+          validations: {
+            required,
+            minLength: minLength(3),
+          }
+        },
+        {
+          input_type: "text",
+          name: "prenom",
+          label: "Prenom",
+          placeholder: "John",
+          msg: {
+            errors: {
+              required: "Le champs est requis",
+              minLength: "Le champ doit contenir plus de " + String(3) + " characteres",
+            },
+            success: "Lui le vrai.",
+            helper: "Tape sur le clavier"
+          },
+          validations: {
+            required,
+            minLength: minLength(3),
+          }
+        },
+
+      ]
+    }
+  },
   components: {
-   //test,
+    iField
+  },
+  methods: {
+    saveValue (value) {
+      this.value = value
+    }
   }
 }
 </script>
