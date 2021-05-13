@@ -31,35 +31,35 @@
                     label="Poste n*1"
                     type="text"
                     @valueChange="updateValue"
-                    :validationField=$v
+                    :validationField=$v.user
                 />
                 <FieldBasic
                     name="poste2"
                     label="Poste n*2"
                     type="text"
                     @valueChange="updateValue"
-                    :validationField=$v
+                    :validationField=$v.user
                 />
                 <FieldBasic
                     name="poste3"
                     label="Poste n*3"
                     type="text"
                     @valueChange="updateValue"
-                    :validationField=$v
+                    :validationField=$v.user
                 />
                 <FieldBasic
                     name="poste4"
                     label="Poste n*4"
                     type="text"
                     @valueChange="updateValue"
-                    :validationField=$v
+                    :validationField=$v.user
                 />
                 <FieldBasic
                     name="poste5"
                     label="Poste n*5"
                     type="text"
                     @valueChange="updateValue"
-                    :validationField=$v
+                    :validationField=$v.user
                 />
             </div>
         <md-button type="submit" class="md-primary">Finish</md-button> 
@@ -92,8 +92,6 @@ export default {
                 poste3:'',
                 poste4:'',
                 poste5:'',
-                mobiliter:null,
-                transporter:null
             },
             //Ici ce sont tout les champs pour les checkboxs
             mobilites:["Noumea","Grand Noumea","Province Sud","Province Nord"],

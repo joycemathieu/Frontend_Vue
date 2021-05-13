@@ -113,7 +113,7 @@ import FieldFormSelect from './fields/FieldFormSelect'
       user:{
         prenom:'',
         nom:'',
-        genre:'',
+        genre:"",
         nomDeJeuneFille:'',
         dateNaissance:null,
         lieuDeNaissance:'',

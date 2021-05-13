@@ -22,9 +22,9 @@
 </template>
 
 <script>
-import FormGeneral from './forms/formPersonelle'
+import FormGeneral from './forms/FormPersonelle'
 import FormAccount from './forms/FormAccount'
-import FormPro from './forms/formProfessionnelle'
+import FormPro from './forms/FormProfessionnelle'
   export default {
     name: 'StepperLinear',
     components:{
