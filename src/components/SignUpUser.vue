@@ -13,8 +13,8 @@
       </md-step>
 
       <md-step id="third" md-label="Troisième étape" md-description="Information professionnelle" :md-done.sync="third">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias doloribus eveniet quaerat modi cumque quos sed, temporibus nemo eius amet aliquid, illo minus blanditiis tempore, dolores voluptas dolore placeat nulla.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias doloribus eveniet quaerat modi cumque quos sed, temporibus nemo eius amet aliquid, illo minus blanditiis tempore, dolores voluptas dolore placeat nulla.</p>
+      
+        <FormPro />
         <md-button class="md-raised md-primary" @click="setDone('third')">Done</md-button>
       </md-step>
     </md-steppers>
@@ -22,13 +22,15 @@
 </template>
 
 <script>
-import FormGeneral from './forms/form'
+import FormGeneral from './forms/formPersonelle'
 import FormAccount from './forms/FormAccount'
+import FormPro from './forms/formProfessionnelle'
   export default {
     name: 'StepperLinear',
     components:{
       FormGeneral,
-      FormAccount
+      FormAccount,
+      FormPro
     },
     data: () => ({
       active: 'first',

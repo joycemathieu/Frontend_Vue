@@ -1,13 +1,13 @@
 <template>
   <div>
     <form novalidate class="md-layout md-alignement-center-center"  @submit.prevent="validateUser">
-      <h3 class="md-title"> Informations générales </h3>
-      <md-divider></md-divider>
-
         <div class="md-layout-item">
+          <h3 class="md-title"> Informations générales </h3>
+          <md-divider></md-divider>
           <FieldForm 
             name="prenom" 
-            label="Prénom" 
+            label="Prénom"
+            min="4" 
             type="text"
             @valueChange="updateValue"
             :validationField=$v.user
@@ -15,6 +15,7 @@
           <FieldForm 
             name="nom" 
             label="Nom"
+            min="4"
             type="text"
             @valueChange="updateValue"
             :validationField=$v.user
@@ -22,6 +23,7 @@
           <FieldFormSelect 
             name="genre"
             label="Genre"
+            :options=options
             @valueChange="updateValue"
             :validationField=$v.user
           />
@@ -35,7 +37,6 @@
           <FieldFormDate
             name="dateNaissance" 
             label="Date de naissance"
-            type="date" 
             @valueChange="updateValue"
             :validationField=$v.user
           />
@@ -50,6 +51,7 @@
             name="tel"
             label="Téléphone" 
             type="tel"
+            max="6"
             @valueChange="updateValue"
             :validationField=$v.user
           />
@@ -70,15 +72,15 @@
           <FieldForm 
             name="codePostal" 
             label="Code Postal"
-            type="number" 
+            max="6"
+            type="text" 
             @valueChange="updateValue"
             :validationField=$v.user
           />   
-          <md-button type="submit" class="md-primary">Suivant</md-button> <!-- Le bouton submit ne valide pas tout Probleme avec le fieldDate ! -->
+          <md-button type="submit" class="md-primary">Suivant</md-button> <!-- Le bouton submit ne valide pas tout Probleme avec le fieldDate et select ! -->
         </div>
     
-      <md-progress-bar md-mode="indeterminate" v-if="sending" /> <!-- Ne fonctionne plus ! :( -->
-      <md-snackbar :md-active.sync="userSaved">Vous avez validé cette étape avec success !!</md-snackbar>
+      <md-snackbar :md-active.sync="userSaved">Vous avez bientot terminer encore une dcerniere étapes, courage !</md-snackbar>
     </form>
   </div>
 </template>
@@ -88,6 +90,8 @@ import { validationMixin } from 'vuelidate'
 import {
 required,
 email,
+numeric,
+maxValue,
 minLength,
 maxLength,
 } from 'vuelidate/lib/validators'
@@ -102,11 +106,6 @@ import FieldFormSelect from './fields/FieldFormSelect'
       FieldFormDate,
       FieldFormSelect,
     },
-    props:{
-      changePage:{
-        type:Function,
-      }
-    },
     data: () => ({
       userSaved: false,
       sending: false,
@@ -116,7 +115,7 @@ import FieldFormSelect from './fields/FieldFormSelect'
         nom:'',
         genre:'',
         nomDeJeuneFille:'',
-        dateNaissance:'',
+        dateNaissance:null,
         lieuDeNaissance:'',
         tel:'',
         email:'',
@@ -124,31 +123,32 @@ import FieldFormSelect from './fields/FieldFormSelect'
         quartier:'',
         codePostal:'',
       },
+      options:["Homme","Femme","Autre"]
     }),
     validations:{
       user:{
         prenom:{
           required,
-          minLength:minLength(4)// Instaurer le message d'erreur if attr minlength  != null dans composant field form basic
+          minLength:minLength(4)
         },
         nom:{
           required,
-          minLength:minLength(4)// Instaurer le message d'erreur if attr minlength  != null dans composant field form basic
+          minLength:minLength(4)
         },
         genre:{
           required,
         },
-        nomDeJeuneFille:{
-        },
         dateNaissance:{
           required,
+          maxValue:maxValue(new Date())
         },
         lieuDeNaissance:{
           required,
         },
         tel:{
           required,
-          maxLength:maxLength(7) // Instaurer le message d'erreur if attr maxlength  != null dans composant field form basic
+          numeric,
+          maxLength:maxLength(7)
         },
         email:{
           required,
@@ -157,12 +157,10 @@ import FieldFormSelect from './fields/FieldFormSelect'
         rue:{
           required,
         },
-        quartier:{
-          required,
-        },
         codePostal:{
           required,
-          maxLength:maxLength(5)// Instaurer le message d'erreur if attr maxlength  != null dans composant field form basic
+          numeric,
+          maxLength:maxLength(5)
         },
         
       }
@@ -170,23 +168,19 @@ import FieldFormSelect from './fields/FieldFormSelect'
     methods: {
       updateValue(data) {
         this.user[data.name] = data.value; // permet de remonter la valeur de l'input de l'enfant aux parents pour validation
-      },
-      changePAge(){
-        this.changePage();
+        console.log(this.dateNaissance);
       },
       saveUser () {
         this.sending = true
 
         // Instead of this timeout, here you can call your API
       window.setTimeout(() => {
-          this.userSaved = true
-          this.sending = false
+          this.userSaved = true // permet de display le petit message dans balise snack-bar
         }, 1500)
       },
       validateUser () {
-        this.$v.$touch()
+        this.$v.$touch()          //verifie si toutes les conditions passer dans la propriété validations sont correct (console.log($v) pour y voir plsu claire)
         if (!this.$v.$invalid) {
-          this.changePAge();
           this.saveUser();
         }
       },

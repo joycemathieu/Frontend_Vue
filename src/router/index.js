@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import SignUp from '../views/signUp'
-import interimaire from '../views/intérimaire'
+import interimaire from '../views/interimaire'
 Vue.use(VueRouter)
 
 const routes = [

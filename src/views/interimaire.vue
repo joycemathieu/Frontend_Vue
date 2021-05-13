@@ -1,17 +1,15 @@
 <template>
   <div>
-      <Table items="users"/>
+    
 
   </div>
 </template>
 
 <script>
-import Table from "../components/tables/table"
+
 export default {
     name:'interim',
-    components:{
-        Table,
-    },
+
     data(){
         return{
             users: [

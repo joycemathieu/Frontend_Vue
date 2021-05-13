@@ -3,10 +3,7 @@
         <md-field>
             <label :for="name">Genre</label>
             <md-select :name="name" :id="name" v-model="value" md-dense @change="sendValue">
-            <md-option></md-option>
-            <md-option value="Homme">Homme</md-option>
-            <md-option value="Femme">Femme</md-option>
-            <md-option value="Autre">Autres</md-option>
+            <md-option :key="index" v-for="(option,index) in options" :value="`${option}`"  > {{ option }} </md-option>
             </md-select>
             <span class="md-error" v-if="ifError(name)">Le champ  {{ label }} est requis !</span>
         </md-field>
@@ -15,6 +12,12 @@
 </template>
 
 <script>
+
+/**
+ * Pour utiliser ce composant il faut passer les options en props
+ *   
+ * 
+ */
 export default {
     name:'FieldFormSelect',
     props:{
@@ -24,8 +27,11 @@ export default {
         label:{
             type:String,
         },
-        validationField:{
+        validationField:{  //Ceci est l'objet $v (vuelidate)
             type:Object,
+        },
+        options:{
+            type:Array
         }
     },
     data(){
@@ -35,7 +41,7 @@ export default {
     },
     methods:{
         sendValue() {
-            this.$emit("valueChange", {value: this.value, name: this.name})
+            this.$emit("valueChange", {value: this.value, name: this.name}) 
         },
         getValidationClass (fieldName) {
             const field = this.validationField[fieldName];
@@ -43,9 +49,12 @@ export default {
           return {'md-invalid': field.$invalid && field.$dirty}
         },
         ifError(fieldName){
-            const error = this.validationField[fieldName].required;
-            if(!error){
-                return true;
+            const field = this.validationField[fieldName];
+            if(typeof field != "undefined"){
+                const error = this.validationField[fieldName].required;
+                if(!error){
+                    return true;
+                }
             }
         }
     }

@@ -32,6 +32,8 @@
                 :validationField=$v.user
             />
         <md-button type="submit" class="md-primary">Suivant</md-button>
+
+        <md-snackbar :md-active.sync="userSaved">Bien joué, vous pouvez passer a l'étapes suivante !</md-snackbar>
       </form>
   </div>
 </template>
@@ -53,7 +55,6 @@ export default {
     data(){
         return{
             userSaved: false,
-            sending: false,
             lastUser: null,
             user:{
                 nomDeCompte:null,
@@ -77,15 +78,29 @@ export default {
             },
             confirmMotDePasse:{
                 required,
-                sameAsPassword: sameAs('motDePasse')
+                sameAsPassword: sameAs('motDePasse')    // verifie si sa martch entre les deux champs password !
                 
             }
         }
     },
     methods:{
         updateValue(data) {
-        this.user[data.name] = data.value; // permet de remonter la valeur de l'input de l'enfant aux parents pour validation
-      },
+            this.user[data.name] = data.value; // permet de remonter la valeur de l'input de l'enfant aux parents pour validation
+        },
+        saveUser () {
+            this.sending = true
+
+            // Instead of this timeout, here you can call your API
+            window.setTimeout(() => {
+            this.userSaved = true
+            }, 1500)
+        },
+        validateUser () {
+            this.$v.$touch()
+            if (!this.$v.$invalid) {
+                this.saveUser();
+            }
+        },
     }
 }
 </script>
