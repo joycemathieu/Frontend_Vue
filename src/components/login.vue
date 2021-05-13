@@ -33,6 +33,8 @@
         <md-card-actions>
           <md-button type="submit" class="md-primary" :disabled="sending">Se connecter</md-button>
         </md-card-actions>
+        <router-link to="">Mot de passe oublié ? </router-link>
+        <router-link to="/SignUp">Vous n'avez pas de compte ?</router-link>
       </md-card>
 
       <md-snackbar :md-active.sync="userSaved">Vous êtes connecté avec succès !</md-snackbar>
@@ -101,6 +103,7 @@
 
         if (!this.$v.$invalid) {
           this.saveUser()
+          alert("Vous ête connecté !")
         }
       }
     }

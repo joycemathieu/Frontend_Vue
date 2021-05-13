@@ -1,51 +1,63 @@
 <template>
     <div>
-        <md-field :class="getValidationClass('genre')">
-            <label for="Genre">Genre</label>
-            <md-select name="Genre" id="Genre" v-model="form.fieldValue" md-dense :disabled="sending">
-            <md-option></md-option>
-            <md-option value="Homme">Homme</md-option>
-            <md-option value="Femme">Femme</md-option>
-            <md-option value="Autre">Autres</md-option>
+        <md-field>
+            <label :for="name">Genre</label>
+            <md-select :name="name" :id="name" v-model="value" md-dense @change="sendValue">
+            <md-option :key="index" v-for="(option,index) in options" :value="option"  > {{ option }} </md-option>
             </md-select>
-            <span class="md-error">Ce champ est obligatoire</span>
+            <span class="md-error" v-if="ifError(name)">Le champ  {{ label }} est requis !</span>
         </md-field>
 
     </div>
 </template>
 
 <script>
-import { validationMixin } from 'vuelidate'
-import {
-    required,
-} from 'vuelidate/lib/validators'
+
+/**
+ * Pour utiliser ce composant il faut passer les options en props
+ *
+ *
+ */
 export default {
     name:'FieldFormSelect',
-    mixins: [validationMixin],
-    data(){
-        return{
-            form:{
-                fieldValue:null,
-            }
+    props:{
+        name:{
+            type:String,
+        },
+        label:{
+            type:String,
+        },
+        validationField:{  //Ceci est l'objet $v (vuelidate)
+            type:Object,
+        },
+        options:{
+            type:Array
         }
     },
-    validations:{
-        form:{
-            genre:{
-                required,
-            }
+    data: () => {
+        return{
+            value: '',
         }
     },
     methods:{
+        sendValue() {
+          console.log("SENDING SELECT VALUE TO DADDY")
+            this.$emit("valueChange", {value: this.value, name: this.name})
+        },
         getValidationClass (fieldName) {
-        const field = this.$v.form[fieldName]
-        console.log(field);
-        if (field) {
-          return {
-            'md-invalid': field.$invalid && field.$dirty
-          }
+            const field = this.validationField[fieldName];
+
+          return {'md-invalid': field.$invalid && field.$dirty}
+        },
+        ifError(fieldName){
+            const field = this.validationField[fieldName];
+            if(typeof field != "undefined"){
+                const error = this.validationField[fieldName].required;
+                if(!error){
+                    return true;
+                }
+            }
         }
-      },
     }
 }
 </script>

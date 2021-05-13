@@ -1,53 +1,65 @@
 <template>
     <div>
-        <md-datepicker v-model="form.fieldValue" :disabled="sending" :class="getValidationClass('date')">
+        <md-datepicker  v-model="value" @change="sendValue" :class="getValidationClass(name)">
             <label> {{ label }} </label>
-            <span class="md-error" v-if="!$v.form.date.required">Ce champ est obligatoire</span>
+            <span class="md-error" v-if="ifError(name)">Veuillez insérer une date !</span>
+            <span class="md-error" v-else-if="ifErrorDate(name)">Veuillez insérer une date valide !</span>
         </md-datepicker>
+        <p> {{ value }} </p>
     </div>
 </template>
 
 <script>
-import { validationMixin } from 'vuelidate'
-import {
-required,
-} from 'vuelidate/lib/validators'
+
+/**
+ * Ce composant ne fonctionne pas avec la validation
+ *
+ *
+ *
+ */
 export default {
     name:'FieldFormDate',
-    mixins: [validationMixin],
     props:{
         label:{
             type:String,
-            required:false,
+        },
+        validationField:{  //Ceci est l'objet $v (vuelidate)
+            type:Object,
+        },
+        name:{
+            type:String
         }
     },
     data(){
         return{
-            form:{
-                fieldValue:null,
-            }
-        }
-    },
-    validations:{
-        form:{
-            date:{
-                required,
-            }
+            value:null,
         }
     },
     methods:{
+        sendValue() {
+          console.log("SENDING DATE")
+            //cette fonction n'est jamais appeler mais this.value recupere bien la valeur
+            this.$emit("valueChange", {value: this.value, name: this.name})
+        },
         getValidationClass (fieldName) {
-            const field = this.$v.form[fieldName]
-        console.log(field);
+            const field = this.validationField[fieldName];
 
-        if (field) {
-          return {
-            'md-invalid': field.$invalid && field.$dirty
-          }
+          return {'md-invalid': field.$invalid && field.$dirty}
+        },
+        ifError(fieldName){
+            const error = this.validationField[fieldName].required;
+            //const field = this.validationField[fieldName];
+            if(!error && typeof this.validationField[fieldName].required != "undefined"){
+                return true;
+            }
+        },
+        ifErrorDate(fieldName){
+            const error = this.validationField[fieldName].maxValue;
+            if(!error && typeof this.validationField[fieldName].maxValue != "undefined"){
+                return true;
+            }
         }
-      },
     }
-
 }
 </script>
 
