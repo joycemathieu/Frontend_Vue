@@ -13,9 +13,9 @@
 
 /**
  * Ce composant ne fonctionne pas avec la validation
- * 
- * 
- * 
+ *
+ *
+ *
  */
 export default {
     name:'FieldFormDate',
@@ -33,10 +33,11 @@ export default {
     data(){
         return{
             value:null,
-        }   
+        }
     },
     methods:{
         sendValue() {
+          console.log("SENDING DATE")
             //cette fonction n'est jamais appeler mais this.value recupere bien la valeur
             this.$emit("valueChange", {value: this.value, name: this.name})
         },

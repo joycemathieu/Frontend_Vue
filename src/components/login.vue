@@ -36,8 +36,8 @@
         <router-link to="">Mot de passe oublié ? </router-link>
         <router-link to="/SignUp">Vous n'avez pas de compte ?</router-link>
       </md-card>
-      
-      <md-snackbar :md-active.sync="userSaved">Vous ête connecté avec succès !</md-snackbar>
+
+      <md-snackbar :md-active.sync="userSaved">Vous êtes connecté avec succès !</md-snackbar>
     </form>
   </div>
 </template>

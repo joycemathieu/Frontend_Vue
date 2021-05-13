@@ -4,7 +4,7 @@
             <div>
                 <h3> Mobilité </h3>
                 <md-divider></md-divider>
-                <FieldCheckbox 
+                <FieldCheckbox
                     name="mobilites"
                     label="Mobilité"
                     :checkboxs=mobilites
@@ -15,7 +15,7 @@
             <div>
                 <h3> Transport </h3>
                 <md-divider></md-divider>
-                <FieldCheckbox 
+                <FieldCheckbox
                     name="transport"
                     label="Transport"
                     :checkboxs=transport
@@ -24,7 +24,7 @@
                 />
             </div>
             <div>
-                <h3>Poste rechercher</h3>
+                <h3>Postes recherchés</h3>
                 <md-divider></md-divider>
                 <FieldBasic
                     name="poste1"
@@ -62,7 +62,7 @@
                     :validationField=$v.user
                 />
             </div>
-        <md-button type="submit" class="md-primary">Finish</md-button> 
+        <md-button type="submit" class="md-primary">Finish</md-button>
         <md-snackbar :md-active.sync="userSaved">Vous êtes enregistré avec succés, Félicitation maintenat aux boulots !</md-snackbar>
       </form>
   </div>
@@ -79,8 +79,8 @@ export default {
     name:"formPersonnelle",
     mixins: [validationMixin],
     components:{
-    FieldCheckbox,
-    FieldBasic
+      FieldCheckbox,
+      FieldBasic
     },
     data(){
         return{
@@ -97,7 +97,7 @@ export default {
             mobilites:["Noumea","Grand Noumea","Province Sud","Province Nord"],
             transport:["Vehicule Personnel","Famille/Ami","Transport en commun","A pied"]
         }
-        
+
     },
     validations:{
         user:{
@@ -108,20 +108,15 @@ export default {
                 minLength:minLength(1)
             },
         }
-        
+
     },
     methods:{
         updateValue(data) {
             this.user[data.name] = data.value; // permet de remonter la valeur de l'input de l'enfant aux parents pour validation
         },
         saveUser () {
-        this.sending = true
-
-        // Instead of this timeout, here you can call your API
-        window.setTimeout(() => {
-          this.userSaved = true
-          this.sending = false
-        }, 1500)
+          // save to store for each step
+          // concat all stored users at the end of the stepper
       },
       validateUser () {
         this.$v.$touch()

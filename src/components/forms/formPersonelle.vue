@@ -4,82 +4,82 @@
         <div class="md-layout-item">
           <h3 class="md-title"> Informations générales </h3>
           <md-divider></md-divider>
-          <FieldForm 
-            name="prenom" 
+          <FieldForm
+            name="prenom"
             label="Prénom"
-            min="4" 
+            min="4"
             type="text"
             @valueChange="updateValue"
             :validationField=$v.user
           />
-          <FieldForm 
-            name="nom" 
+          <FieldForm
+            name="nom"
             label="Nom"
             min="4"
             type="text"
             @valueChange="updateValue"
             :validationField=$v.user
           />
-          <FieldFormSelect 
+          <FieldFormSelect
             name="genre"
             label="Genre"
             :options=options
             @valueChange="updateValue"
             :validationField=$v.user
           />
-          <FieldForm 
-            name="nomDeJeuneFille" 
+          <FieldForm
+            name="nomDeJeuneFille"
             label="Nom de jeune fille"
             type="text"
             @valueChange="updateValue"
-            :validationField=$v.user  
+            :validationField=$v.user
           />
           <FieldFormDate
-            name="dateNaissance" 
+            name="dateNaissance"
             label="Date de naissance"
             @valueChange="updateValue"
             :validationField=$v.user
           />
-          <FieldForm 
-            name="lieuDeNaissance" 
+          <FieldForm
+            name="lieuDeNaissance"
             label="Lieu de Naissance"
-            type="text" 
+            type="text"
             @valueChange="updateValue"
             :validationField=$v.user
           />
-          <FieldForm 
+          <FieldForm
             name="tel"
-            label="Téléphone" 
+            label="Téléphone"
             type="tel"
             max="6"
             @valueChange="updateValue"
             :validationField=$v.user
           />
-          <FieldForm 
-            name="rue" 
-            label="Rue" 
-            type="text" 
+          <FieldForm
+            name="rue"
+            label="Rue"
+            type="text"
             @valueChange="updateValue"
             :validationField=$v.user
           />
-          <FieldForm 
-            name="quartier" 
-            label="Quartier" 
-            type="text" 
+          <FieldForm
+            name="quartier"
+            label="Quartier"
+            type="text"
             @valueChange="updateValue"
             :validationField=$v.user
           />
-          <FieldForm 
-            name="codePostal" 
+          <FieldForm
+            name="codePostal"
             label="Code Postal"
             max="6"
-            type="text" 
+            type="text"
             @valueChange="updateValue"
             :validationField=$v.user
-          />   
+          />
           <md-button type="submit" class="md-primary">Suivant</md-button> <!-- Le bouton submit ne valide pas tout Probleme avec le fieldDate et select ! -->
         </div>
-    
+
       <md-snackbar :md-active.sync="userSaved">Vous avez bientot terminer encore une dcerniere étapes, courage !</md-snackbar>
     </form>
   </div>
@@ -106,25 +106,26 @@ import FieldFormSelect from './fields/FieldFormSelect'
       FieldFormDate,
       FieldFormSelect,
     },
-    data: () => ({
-      userSaved: false,
-      sending: false,
-      lastUser: null,
-      user:{
-        prenom:'',
-        nom:'',
-        genre:"",
-        nomDeJeuneFille:'',
-        dateNaissance:null,
-        lieuDeNaissance:'',
-        tel:'',
-        email:'',
-        rue:'',
-        quartier:'',
-        codePostal:'',
-      },
+    data: () => {
+      return {
+        userSaved: false,
+        lastUser: null,
+        user:{
+          prenom:'',
+          nom:'',
+          genre:'',
+          nomDeJeuneFille:'',
+          dateNaissance: Date(),
+          lieuDeNaissance:'',
+          tel:'',
+          email:'',
+          rue:'',
+          quartier:'',
+          codePostal:'',
+        },
       options:["Homme","Femme","Autre"]
-    }),
+      }
+    },
     validations:{
       user:{
         prenom:{
@@ -162,21 +163,17 @@ import FieldFormSelect from './fields/FieldFormSelect'
           numeric,
           maxLength:maxLength(5)
         },
-        
+
       }
     },
     methods: {
       updateValue(data) {
         this.user[data.name] = data.value; // permet de remonter la valeur de l'input de l'enfant aux parents pour validation
-        console.log(this.dateNaissance);
+
       },
       saveUser () {
-        this.sending = true
-
-        // Instead of this timeout, here you can call your API
-      window.setTimeout(() => {
-          this.userSaved = true // permet de display le petit message dans balise snack-bar
-        }, 1500)
+        // save to store for each step
+        // concat all stored users at the end of the stepper
       },
       validateUser () {
         this.$v.$touch()          //verifie si toutes les conditions passer dans la propriété validations sont correct (console.log($v) pour y voir plsu claire)
