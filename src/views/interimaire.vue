@@ -1,18 +1,21 @@
 <template>
   <div>
     
-
+    <TableSearch :items=users />
   </div>
 </template>
 
 <script>
-
+import TableSearch from '../components/tables/Table'
 export default {
     name:'interim',
-
+    components:{
+      TableSearch,
+    },
     data(){
         return{
-            users: [
+        
+        users: [
         {
           id: 1,
           name: "Shawna Dubbin",
@@ -160,6 +163,11 @@ export default {
 }
 </script>
 
-<style>
-
+<style >
+.md-table-head.md-numeric{
+  text-align: right;
+}
+.md-sortable{
+  text-align: center !important;
+}
 </style>

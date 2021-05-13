@@ -92,8 +92,6 @@ export default {
                 poste3:'',
                 poste4:'',
                 poste5:'',
-                mobiliter:null,
-                transporter:null
             },
             //Ici ce sont tout les champs pour les checkboxs
             mobilites:["Noumea","Grand Noumea","Province Sud","Province Nord"],
