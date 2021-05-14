@@ -1,11 +1,11 @@
 <template>
   <div class="test">
-    <iField v-for="field in fields" :field="field" v-bind:key="field.name" v-on:validated="saveValue"/>
+    <iForm/>
   </div>
 </template>
 
 <script>
-import iField from "@/components/__dead__/i+_field.vue"
+import iField from "@/components/__dead__/iForm.vue"
 import { required, minLength } from 'vuelidate/lib/validators'
 export default {
   name: 'Test',
