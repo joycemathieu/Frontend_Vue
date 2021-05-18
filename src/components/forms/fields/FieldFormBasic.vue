@@ -15,7 +15,7 @@
 <script>
 
 /**
- * 
+ *
  * Pour utiliser ce composants veuillez indiquer a son parent:
  *              -son name permet de rendre dynamique les fonctions error
  *              -son label permet de rendre dynamique le mssage d'erreur
@@ -70,7 +70,7 @@ export default {
                 if(!error && typeof this.validationField[fieldName].$params.required != "undefined"){
                     return true;
                 }
-            } 
+            }
         },
         ifErrorNum(fieldName){
             const field = this.validationField[fieldName];
