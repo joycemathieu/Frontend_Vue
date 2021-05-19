@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import SignUp from '../views/Signup.vue'
 import interimaire from '../views/interimaire.vue'
 import Test from '../views/test.vue'
+import Calendrier from '../views/Calendar'
 Vue.use(VueRouter)
 
 const routes = [
@@ -25,6 +26,11 @@ const routes = [
     name: 'Test',
     component: Test
   },
+  {
+    path:"/calendrier",
+    name:"calendrier",
+    component: Calendrier
+  }
 ]
 
 const router = new VueRouter({

@@ -59,6 +59,10 @@ export default {
     textarea: {
       classification: "text",
       component: "myTextarea",
+    },
+    time:{
+      classification:"time",
+      component:"myInput"
     }
   }
 }
