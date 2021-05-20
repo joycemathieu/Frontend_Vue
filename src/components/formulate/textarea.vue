@@ -1,13 +1,6 @@
 <template lang="html">
-  <div :data-type="context.type" class="md-layout" >
-
-
-    <md-field class="md-layout-item md-size-100">
-      <label :for="context.id">
-        {{ context.label }}
-      </label>
-      <md-textarea :type="context.type" v-model="context.model" @blur="context.blurHandler"/>
-    </md-field>
+  <div :data-type="context.type" >
+    <textarea class="textarea" :type="context.type" v-model="context.model" @blur="context.blurHandler"/>
   </div>
 
 </template>

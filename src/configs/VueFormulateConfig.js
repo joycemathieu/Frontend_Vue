@@ -5,6 +5,19 @@ export default {
   plugins: [ fr ],
   locale: 'fr',
 
+  classes: {
+    outer: [
+      "field"
+    ],
+    label: [
+      "label"
+    ],
+    error: [
+      "help",
+      "is-danger",
+    ]
+  },
+
   slotComponents: {
     label: 'myLabel',
   },
@@ -59,6 +72,18 @@ export default {
     textarea: {
       classification: "text",
       component: "myTextarea",
+    },
+    select: {
+      classification: "select",
+      component: "mySelect",
+    },
+    radio: {
+      classification: "radio",
+      component: "myRadio",
+    },
+    checkbox: {
+      classification: "checkbox",
+      component: "myCKB",
     }
   }
 }
