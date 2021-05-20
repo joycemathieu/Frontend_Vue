@@ -1,14 +1,16 @@
 <template lang="html">
   <div class="">
-    <div class="head">
-      <div class="title" v-for="tab in pages" :key="tab.index" @click="activeTab = tab.index">
-        {{tab.title}}
-      </div>
+    <div class="tabs">
+      <ul>
+        <li v-for="tab in pages" :key="tab.index" @click="activeTab = tab.index" :class="activeTab == tab.index ? 'is-active' : '' ">
+          <a>{{tab.title}}</a>
+        </li>
+      </ul>
     </div>
     <div class="content">
       <div v-for="tab in pages" :key="tab.index">
         <div v-if="activeTab === tab.index">
-          
+          <component :is="tab.content"></component>
         </div>
       </div>
     </div>

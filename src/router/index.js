@@ -2,8 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import interimaire from '../views/interimaire.vue'
-import Test from '../views/test/test.vue'
-import Test2 from '../views/test/test2.vue'
+import Form from '../views/test/Form.vue'
+import Tabs from '../views/test/Tabs.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -17,14 +17,14 @@ const routes = [
     component:interimaire,
   },
   {
-    path: '/test',
-    name: 'Test',
-    component: Test
+    path: '/test/form',
+    name: 'Form',
+    component: Form
   },
   {
-    path: '/test2',
-    name: 'Test2',
-    component: Test2
+    path: '/test/tabs',
+    name: 'Tabs',
+    component: Tabs
   },
 ]
 

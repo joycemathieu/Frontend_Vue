@@ -1,15 +1,24 @@
 <template>
-  <div class="">  
+  <div class="">
     <tabs :pages="mesTabs" :defaultTab="0"/>
+    <div v-if="false">
+
+    </div>
+
   </div>
 </template>
 
 <script>
+
 import tabs from "@/components/custom/tabs"
+import test from "@/views/test/Form"
+import Home from "@/views/Home"
+import Interimaire from "@/views/interimaire"
+
 export default {
   name: 'Test',
   components: {
-    tabs,
+    tabs
   },
   data: () => {
     return {
@@ -17,17 +26,17 @@ export default {
         {
           index: 0,
           title: "Hello00World",
-          content: "X0Y0Z",
+          content: test,
         },
         {
           index: 1,
           title: "Hello11World",
-          content: "X1Y2Z",
+          content: Home,
         },
         {
           index: 2,
           title: "Hello22World",
-          content: "X2Y2Z",
+          content: Interimaire,
         },
       ]
     }
