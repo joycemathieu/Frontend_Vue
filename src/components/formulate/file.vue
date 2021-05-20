@@ -1,6 +1,20 @@
 <template lang="html">
   <div :data-type="context.type" class="md-layout" >
 
+    <label>
+
+      <input class="file-input" :type="context.type">
+      <span class="file-cta">
+        <span class="file-icon">
+          <i class="fas fa-upload"></i>
+        </span>
+        <span class="file-label">
+          {{ context.label }}
+        </span>
+
+      </span>
+
+    </label>
 
     <md-field class="md-layout-item md-size-100">
       <label :for="context.id">

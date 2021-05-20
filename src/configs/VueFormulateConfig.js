@@ -4,6 +4,18 @@ import { fr } from '@braid/vue-formulate-i18n'
 export default {
   plugins: [ fr ],
   locale: 'fr',
+  classes: {
+    outer: [
+      "field"
+    ],
+    label: [
+      "label"
+    ],
+    error: [
+      "help",
+      "is-danger",
+    ]
+  },
 
   slotComponents: {
     label: 'myLabel',
@@ -60,9 +72,22 @@ export default {
       classification: "text",
       component: "myTextarea",
     },
-    time:{
-      classification:"time",
-      component:"myInput"
+    select: {
+      classification: "select",
+      component: "mySelect",
+    },
+    radio: {
+      classification: "radio",
+      component: "myRadio",
+    },
+    checkbox: {
+      classification: "checkbox",
+      component: "myCKB",
+    },
+    file:{
+      classification: "file",
+      component:"myFile"
     }
+
   }
 }

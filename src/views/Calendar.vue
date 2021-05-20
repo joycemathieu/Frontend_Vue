@@ -1,10 +1,6 @@
 <template>
     <div>
-        
-            <Calendrier />
-        
-
-
+        <Calendrier />
     </div>
 </template>
 

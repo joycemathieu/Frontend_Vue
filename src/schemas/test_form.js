@@ -2,7 +2,7 @@ export default [
   /* Username */
   {
     component: "h3",
-    class: "md-display-1",
+    class: "subtitle is-1",
     children: "username"
   },
   {
@@ -16,20 +16,19 @@ export default [
   /* Text */
   {
     component: "h3",
-    class: "md-display-1",
+    class: "subtitle is-1",
     children: "text"
   },
   {
     component: "div",
-    class: "md-layout md-gutter",
+    class: "columns",
     children: [
       {
-        component: "FormulateInput",
         type: "text",
         label: "Votre nom",
         name: "nom",
-        icon: "face",
-        "outer-class": "md-layout-item md-size-50",
+        icon: "fa-users",
+        "outer-class": "column is-6",
         validation: "required|alpha",
         validationName: "Le nom"
       },
@@ -37,8 +36,7 @@ export default [
         type: "text",
         label: "Votre prenom",
         name: "prenom",
-        "outer-class": "md-layout-item md-size-50",
-        "wrapper-class": "md-field",
+        "outer-class": "column is-6",
         validation: "^required|^alpha|^min:5,length",
         validationName: "Le prenom"
       }
@@ -46,7 +44,7 @@ export default [
   },
   {
     component: "h3",
-    class: "md-display-1",
+    class: "subtitle is-1",
     children: "password"
   },
   {
@@ -58,7 +56,7 @@ export default [
   },
   {
     component: "h3",
-    class: "md-display-1",
+    class: "subtitle is-1",
     children: "email"
   },
   {
@@ -70,7 +68,7 @@ export default [
   },
   {
     component: "h3",
-    class: "md-display-1",
+    class: "subtitle is-1",
     children: "tel"
   },
   {
@@ -82,7 +80,7 @@ export default [
   },
   {
     component: "h3",
-    class: "md-display-1",
+    class: "subtitle is-1",
     children: "textarea"
   },
   {
@@ -95,7 +93,7 @@ export default [
   },
   {
     component: "h3",
-    class: "md-display-1",
+    class: "subtitle is-1",
     children: "number"
   },
   {
@@ -107,7 +105,43 @@ export default [
   },
   {
     component: "h3",
-    class: "md-display-1",
+    class: "subtitle is-1",
+    children: "Select"
+  },
+  {
+    type: "select",
+    label: "Selection",
+    name: "selection",
+    options: [
+      {
+        label: "Option A",
+        value: "optionA",
+        selected: true,
+      },
+      {
+        label: "Option B",
+        value: "optionB",
+      },
+      {
+        label: "Option C",
+        value: "optionC",
+        disabled: true,
+      },
+    ],
+  },
+  {
+    component: "h3",
+    class: "subtitle is-1",
+    children: "Image"
+  },
+  {
+    type: "file",
+    name: "headshot",
+    label: "Your headshot"
+  },
+  {
+    component: "h3",
+    class: "subtitle is-1",
     children: "groups"
   },
   {
@@ -115,16 +149,14 @@ export default [
       children: "Social profile"
     },
     {
-      type: "image",
-      name: "headshot",
-      label: "Your headshot"
-    },
-    {
       type: "group",
       name: "accounts",
       validation: "min:2,length",
       repeatable: true,
       "add-label": "+ Add platform",
+      "remove-label": "Enlever",
+      "add-label-class": "button",
+      class: "",
       value: [{}],
       children: [{
           type: "select",
@@ -136,7 +168,7 @@ export default [
             facebook: "Facebook",
             instagram: "Instagram",
             linkedin: "LinkedIn"
-          }
+          },
         },
         {
           type: "text",
@@ -145,6 +177,34 @@ export default [
           validation: "required|url"
         }
       ]
+    },
+    {
+      component: "h3",
+      class: "subtitle is-1",
+      children: "Radio"
+    },
+    {
+      type: "radio",
+      name: "choix",
+      label: "Hello",
+      options: {
+        a: "Choix A",
+        b: "Choix B",
+      }
+    },
+    {
+      component: "h3",
+      class: "subtitle is-1",
+      children: "Checkbox"
+    },
+    {
+      type: "checkbox",
+      name: "choix",
+      label: "checkboxes",
+      options: {
+        a: "Choix A",
+        b: "Choix B",
+      }
     },
     {
       type: "submit",

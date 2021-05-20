@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import SignUp from '../views/Signup.vue'
 import interimaire from '../views/interimaire.vue'
 import Test from '../views/test.vue'
 import Calendrier from '../views/Calendar'
@@ -12,10 +11,6 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
-  },
-  {
-    path:'/SignUp',
-    component:SignUp,
   },
   {
     path: '/interimaire',

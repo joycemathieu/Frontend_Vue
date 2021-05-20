@@ -1,29 +1,39 @@
 <template>
   <div>
-    <md-table v-model="searched" md-sort="id" md-sort-order="asc" md-card md-fixed-header>
-      <md-table-toolbar>
-        <div class="md-toolbar-section-start">
-          <h1 class="md-title">A déclarer</h1>
-        </div>
+    <table class="table is-hoverable is-bordered is-striped">
+      <thead>
+        <th :key="index" v-for="(titre,index) in Object.keys(keys)"> {{ titre }} </th>
+      </thead>
+      <tbody>
+        <tr :id="index+1" :key="index" v-for="(item,index) in items" @click="showMore(item)">
+          <td> {{ item.id }}      </td>
+          <td> {{ item.name }}    </td>
+          <td> {{ item.email }}   </td>
+          <td> {{ item.gender }}  </td>
+          <td> {{ item.title }}   </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="modal" :class="{'is-active':active}">
+      <div class="modal-background" @click="closeModal"></div>
+        <div class="modal-card" v-if="valueItem != null && valueItem != undefined">
+          <header class="modal-card-head">
+            <p class="modal-card-title"> {{ valueItem.name }} </p>
+            <button class="delete" aria-label="close" @click="closeModal"></button>
+          </header>
+          <section class="modal-card-body">
+            <h3 > {{ valueItem.name }} </h3>
+            <p>Mon email est : {{ valueItem.email }} </p>
+            <p>Je suis un : {{ valueItem.gender }} </p>
+            <p>Je suis travaille : {{ valueItem.title }} </p>
+          </section>
+          <footer class="modal-card-foot">
+           
+          </footer>
+    </div>
+</div>
 
-        <md-field md-clearable class="md-toolbar-section-end">
-          <md-input placeholder="Search by name..." v-model="search" @input="searchOnTable" />
-        </md-field>
-      </md-table-toolbar>
-      <md-table-empty-state
-        md-label="Aucune personne trouvé"
-        :md-description="`Aucune personne avec ${search} comme nom n'a été trouver.Essayer autre chose.`">
-      </md-table-empty-state>
 
-
-      <md-table-row slot="md-table-row" slot-scope="{ item }" :class="getClass(item)" md-selectable="single">
-        <md-table-cell md-label="ID" md-numeric>{{ item.id }}</md-table-cell>
-        <md-table-cell md-label="Name" md-sort-by="name">{{ item.name }}</md-table-cell>
-        <md-table-cell md-label="Email" md-sort-by="email">{{ item.email }}</md-table-cell>
-        <md-table-cell md-label="Gender" md-sort-by="gender">{{ item.gender }}</md-table-cell>
-        <md-table-cell md-label="Job Title" md-sort-by="title">{{ item.title }}</md-table-cell>
-      </md-table-row>
-    </md-table>
   </div>
 </template>
 
@@ -46,32 +56,32 @@ export default {
   data(){
     return{
       search:"",
-      searched:[]
+      searched:[],
+      keys:this.items[0],
+      valueItem:null,
+      active:false,
     }
   },
   methods: {
-    searchOnTable(){
-      if(this.search){
-        this.searched = this.items.filter( item => item.name.toLowerCase().includes(this.search.toLowerCase()))
-        return this.searched
+    showMore(value){
+      if(value != undefined && value != null){
+        this.active = true;
+        this.valueItem = value;
       }
-      return this.searched = this.items
     },
-    getClass: ({ gender }) => ({
-        'md-primary': gender === "Male",
-        'md-accent': gender === "Female"
-      }),
-  },
-  created () {
-    this.searched = this.items
+    closeModal(){
+      this.active = false;
+    }
   }
-  
 }
 </script>
 
 <style scoped>
 .md-field{
   max-width: 300px;
+}
+.modal-content,.title{
+  color: white;
 }
 </style>
 

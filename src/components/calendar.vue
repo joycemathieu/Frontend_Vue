@@ -18,18 +18,19 @@
                 :repeatable=true
                 add-label="Ajouter une horraire"
                 @repeatableAdded="test"
-            >
-                <h4> {{ setLabel }} </h4>
-
+                :groupRepeatable-class="['columns']"
+            >   
                 <FormulateInput 
                     type="time"
                     label="de"
                     name="de"
+                    :outer-class="['is-horizontal','column']"
                 />
                 <FormulateInput 
                     type="time"
                     name="a"
                     label="a"
+                    :outer-class="['is-horizontal','column']"
                 />
 
             </FormulateInput>
@@ -85,6 +86,10 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
+
+.formulate-input-group-repeatable{
+    display: flex !important;
+}
 
 </style>

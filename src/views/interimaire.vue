@@ -14,7 +14,6 @@ export default {
     },
     data(){
         return{
-        
         users: [
         {
           id: 1,
