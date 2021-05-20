@@ -2,8 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import interimaire from '../views/interimaire.vue'
-import Test from '../views/test.vue'
 import Calendrier from '../views/Calendar'
+import Test from '../views/test/test.vue'
+import Test2 from '../views/test/test2.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -20,6 +21,11 @@ const routes = [
     path: '/test',
     name: 'Test',
     component: Test
+  },
+  {
+    path: '/test2',
+    name: 'Test',
+    component: Test2
   },
   {
     path:"/calendrier",

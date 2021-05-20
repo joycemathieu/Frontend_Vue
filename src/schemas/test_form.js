@@ -199,7 +199,7 @@ export default [
     },
     {
       type: "checkbox",
-      name: "choix",
+      name: "choix2",
       label: "checkboxes",
       options: {
         a: "Choix A",
