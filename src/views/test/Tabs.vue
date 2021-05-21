@@ -1,6 +1,9 @@
 <template>
   <div class="">
-    <tabs :pages="mesTabs" :defaultTab="0"/>
+    <div class="container">
+      <tabs :pages="mesTabs" :defaultTab="0"/>
+
+    </div>
   </div>
 </template>
 

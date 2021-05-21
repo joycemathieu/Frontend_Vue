@@ -1,46 +1,6 @@
 <template>
     <div>
-        <FormulateForm v-model="values">
-            <FormulateInput 
-                type="date"
-                label="Periode du"
-                name="debut"
-            />
-            <FormulateInput 
-                type="date"
-                label="Au"
-                name="fin"
-            />
-           
-            <FormulateInput
-                type="group"
-                name="horraires"
-                :repeatable=true
-                add-label="Ajouter une horraire"
-                @repeatableAdded="test"
-                :groupRepeatable-class="['columns']"
-            >   
-                <FormulateInput 
-                    type="time"
-                    label="de"
-                    name="de"
-                    :outer-class="['is-horizontal','column']"
-                />
-                <FormulateInput 
-                    type="time"
-                    name="a"
-                    label="a"
-                    :outer-class="['is-horizontal','column']"
-                />
-
-            </FormulateInput>
-
-            <FormulateInput 
-                type="submit"
-                name="save"
-            />
-
-        </FormulateForm>
+        <FormulateForm v-model="values" :schema="schema" ></FormulateForm>
         <md-content >
             <md-tab>
                 <h3>Previsualisation des valeurs aux submits</h3>
@@ -51,15 +11,15 @@
 </template>
 
 <script>
-
+import Schema from "../schemas/calendar_form"
 export default {
     name:"calendar",
     data(){
         return{
             values:{},
+            schema:Schema,
             userSaved:false,
-            days: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
-            months: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre']
+
         }
     },
     methods:{

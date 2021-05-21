@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="">
-    <div class="tabs">
+    <div class="tabs column is-two-thirds">
       <ul>
         <li v-for="tab in pages" :key="tab.index" @click="activeTab = tab.index" :class="activeTab == tab.index ? 'is-active' : ''" >
           <a>{{tab.title}}</a>
@@ -13,7 +13,6 @@
           <component :is="tab.content"></component>
         </div>
       </div>
-      <button>Next</button>
     </div>
   </div>
 

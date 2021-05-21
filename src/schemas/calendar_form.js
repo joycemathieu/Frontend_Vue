@@ -1,39 +1,37 @@
 export default [
     {
-        component: "h3",
-        class: "md-display-1",
-        children: "horraires"
+        type:"date",
+        label:"Periode du",
+        name:"debut"
     },
     {
-        type: "group",
-        name: "days",
-        repeatable: true,
-        "add-label": "add Days",
-        value: [{}],
+        type:"date",
+        label:"Au",
+        name:"fin"
+    },
+    {
+        type:"group",
+        name:"horraires",
+        repeatable:true,
+        "add-label":"Ajouter une horraire",
+        "groupRepeatable-class":"formulate-input-group-repeatable columns",
+        values:[],
         children:[
             {
-                component: "h2",
-                class: "md-display-1",
-                children: "Matin"
+                type:"time",
+                name:"de",
+                label:"De",
             },
             {
-                type: "text",
-                name: "matin de",
-                label: "De",
-                placeholder: "De",
-            },
-            {
-                type: "text",
-                name: "matin a",
-                label: "A",
-                placeholder: "A",
-            },
-
+                type:"time",
+                name:"A",
+                label:"A"
+            }
         ]
     },
     {
-    type: "submit",
-    label: "Submit"
+        type:"submit",
+        name:"Envoyez"
     }
 
 

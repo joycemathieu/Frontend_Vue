@@ -25,7 +25,7 @@
             <h3 > {{ valueItem.name }} </h3>
             <p>Mon email est : {{ valueItem.email }} </p>
             <p>Je suis un : {{ valueItem.gender }} </p>
-            <p>Je suis travaille : {{ valueItem.title }} </p>
+            <p>Je travaille dans : {{ valueItem.title }} </p>
           </section>
           <footer class="modal-card-foot">
            

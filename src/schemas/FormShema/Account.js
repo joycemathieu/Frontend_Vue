@@ -24,4 +24,8 @@ export default[
         label:"Confirmez votre mote de passe",
         validation:"required|confirm"
     },
+    {
+        type:"submit",
+        name:"Envoyez"
+    }
 ]

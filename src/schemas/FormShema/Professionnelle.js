@@ -29,7 +29,7 @@ export default[
         "add-label":"Ajouter un poste",
         "remove-label":"Supprimez un poste",
         "add-label-class":"button",
-        value:[],
+        value:[{}],
         repeatable:true,
         validation:"max:4,length",
         children:[
@@ -51,5 +51,9 @@ export default[
             recrutement:"Recrutement",
             "interim recrutement":"Interim et recrutement"
         }
+    },
+    {
+        type:"submit",
+        name:"Envoyez"
     }
 ]
