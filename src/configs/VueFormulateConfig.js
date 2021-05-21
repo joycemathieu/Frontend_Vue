@@ -85,5 +85,9 @@ export default {
       classification: "file",
       component:"myFile"
     },
+    tag:{
+      classification:"tag",
+      component:'myTag'
+    }
   }
 }

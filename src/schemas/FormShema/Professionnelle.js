@@ -24,7 +24,7 @@ export default[
     },
     {
         type:"group",
-        name:"Poste_rechercher",
+        name:"poste_recherche",
         label:"Indiquez les postes recherchés",
         "add-label":"Ajouter un poste",
         "remove-label":"Supprimez un poste",
@@ -51,6 +51,11 @@ export default[
             recrutement:"Recrutement",
             "interim recrutement":"Interim et recrutement"
         }
+    },
+    {
+        type:"tag",
+        name:"competences",
+        label:"competence",
     },
     {
         type:"group",
