@@ -1,22 +1,20 @@
 <template>
-  <div>
-    
-    <TableSearch :items=users />
-  </div>
+<div>
+  <TableSearch :items="users" />
+</div>
 </template>
 
 <script>
-import TableSearch from '../components/tables/Table'
+import TableSearch from "@/components/tables/table"
 export default {
-    name:'interim',
-    components:{
-      TableSearch,
-    },
-    data(){
-        return{
-        
-        users: [
-        {
+  name: 'interim',
+  components: {
+    TableSearch,
+  },
+  data: () => {
+    return {
+
+      users: [{
           id: 1,
           name: "Shawna Dubbin",
           email: "sdubbin0@geocities.com",
@@ -157,17 +155,18 @@ export default {
           title: "Actuary"
         }
       ]
-        }
-    },
+    }
+  },
 
 }
 </script>
 
 <style >
-.md-table-head.md-numeric{
+.md-table-head.md-numeric {
   text-align: right;
 }
-.md-sortable{
+
+.md-sortable {
   text-align: center !important;
 }
 </style>
