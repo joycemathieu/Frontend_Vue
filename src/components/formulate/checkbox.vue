@@ -8,7 +8,7 @@
       :id="option.id"
       v-model="context.model"
       @blur="context.blurHandler"
-      :value="option.value">
+      :value="option.value"/>
       {{ option.label }}
     </label>
   </div>
