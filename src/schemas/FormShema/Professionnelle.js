@@ -53,6 +53,23 @@ export default[
         }
     },
     {
+        type:"group",
+        name:"Fichiers",
+        label:"Vos documents",
+        help:"Accepte les formats png,jpeg et pdf only",
+        validation:"max:3,length|mime:application/pdf|required",
+        repeatable:true,
+        "add-label":"Ajouter fichier",
+        "add-label-class":"button",
+        value:[{}],
+        children:[{
+            type:"file",
+            name:"fichier",
+            label:"Upload",
+            validation:""
+        }]
+    },
+    {
         type:"submit",
         name:"Envoyez"
     }

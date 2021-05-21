@@ -54,9 +54,9 @@ export default {
         component: ['icon']
       },
     },
-    tel: {
-      classification: "tel",
-      component: 'myTel',
+    tel:{
+      classification:"tel",
+      component:"myTel"
     },
     number: {
       classification: "number",

@@ -6,7 +6,7 @@
       <div class="navbar-brand">
         <div class="navbar-start">
           <router-link class="navbar-item" to="/">Accueil</router-link>
-          <router-link class="navbar-item" to="/SignUp">Sign Up</router-link>
+          <router-link class="navbar-item" to="/test/tabs">Sign Up</router-link>
           <router-link class="navbar-item" to="/interimaire">Interimaire</router-link>
         </div>
 
