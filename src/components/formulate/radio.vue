@@ -3,6 +3,7 @@
     <label :for="option.id" class="radio" v-for="option in options" :key="option.id">
       <input
       :type="context.type"
+      :id="option.id"
       v-model="context.model"
       @blur="context.blurHandler"
       :value="option.value">

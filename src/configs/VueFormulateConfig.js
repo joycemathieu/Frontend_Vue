@@ -56,10 +56,7 @@ export default {
     },
     tel: {
       classification: "tel",
-      component: 'myInput',
-      slotProps: {
-        component: ['icon']
-      },
+      component: 'myTel',
     },
     number: {
       classification: "number",
@@ -87,7 +84,6 @@ export default {
     file:{
       classification: "file",
       component:"myFile"
-    }
-
+    },
   }
 }

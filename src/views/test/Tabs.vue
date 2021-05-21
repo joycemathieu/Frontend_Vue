@@ -1,33 +1,38 @@
 <template>
-  <div class="">  
+  <div class="">
     <tabs :pages="mesTabs" :defaultTab="0"/>
   </div>
 </template>
 
 <script>
+
 import tabs from "@/components/custom/tabs"
+import FormAccount from "@/components/formStep/formAccount"
+import FormPerso from "@/components/formStep/formPersonnelle"
+import FormPro from "@/components/formStep/formProfessionnelle"
+
 export default {
   name: 'Test',
   components: {
-    tabs,
+    tabs
   },
   data: () => {
     return {
       mesTabs: [
         {
           index: 0,
-          title: "Hello00World",
-          content: "X0Y0Z",
+          title: "First Step",
+          content: FormAccount,
         },
         {
           index: 1,
-          title: "Hello11World",
-          content: "X1Y2Z",
+          title: "Second Step",
+          content: FormPerso,
         },
         {
           index: 2,
-          title: "Hello22World",
-          content: "X2Y2Z",
+          title: "Third Step",
+          content: FormPro,
         },
       ]
     }
