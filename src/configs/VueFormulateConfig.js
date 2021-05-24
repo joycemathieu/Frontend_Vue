@@ -1,10 +1,9 @@
-import { fr } from '@braid/vue-formulate-i18n'
+import { fr } from "@braid/vue-formulate-i18n"
 
 
 export default {
   plugins: [ fr ],
-  locale: 'fr',
-
+  locale: "fr",
   classes: {
     outer: [
       "field"
@@ -19,54 +18,51 @@ export default {
   },
 
   slotComponents: {
-    label: 'myLabel',
+    label: "myLabel",
   },
 
   slotProps: {
-    label: ['tooltip'],
+    label: ["tooltip"],
   },
 
   library: {
     username: {
       classification: "text",
-      component: 'myInput',
+      component: "myInput",
       slotProps: {
-        component: ['icon']
+        component: ["icon"]
       },
     },
     text: {
       classification: "text",
-      component: 'myInput',
+      component: "myInput",
       slotProps: {
-        component: ['icon']
+        component: ["icon"]
       },
     },
     password: {
       classification: "password",
-      component: 'myInput',
+      component: "myInput",
       slotProps: {
-        component: ['icon']
+        component: ["icon"]
       },
     },
     email: {
       classification: "email",
-      component: 'myInput',
+      component: "myInput",
       slotProps: {
-        component: ['icon']
+        component: ["icon"]
       },
     },
-    tel: {
-      classification: "tel",
-      component: 'myInput',
-      slotProps: {
-        component: ['icon']
-      },
+    tel:{
+      classification:"tel",
+      component:"myTel"
     },
     number: {
       classification: "number",
-      component: 'myInput',
+      component: "myInput",
       slotProps: {
-        component: ['icon']
+        component: ["icon"]
       },
     },
     textarea: {
@@ -84,6 +80,14 @@ export default {
     checkbox: {
       classification: "checkbox",
       component: "myCKB",
-    }
+    },
+    file: {
+      classification: "file",
+      component: "myFile",
+    },
+    tag: {
+      classification: "tag",
+      component: "myTag",
+    },
   }
 }

@@ -135,7 +135,7 @@ export default [
     children: "Image"
   },
   {
-    type: "image",
+    type: "file",
     name: "headshot",
     label: "Your headshot"
   },

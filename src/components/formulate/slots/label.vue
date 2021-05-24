@@ -11,7 +11,6 @@
 
 <script>
 
-//!['text', 'password', 'email', 'tel', 'number', 'week', 'month', 'textarea', 'username'].includes(context.type)
 export default {
   props: {
     context: {

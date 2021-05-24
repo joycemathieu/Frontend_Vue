@@ -40,7 +40,6 @@
 
 <script>
 import testFormSchema from "@/schemas/test_form"
-
 export default {
   name: 'Test',
   components: {
