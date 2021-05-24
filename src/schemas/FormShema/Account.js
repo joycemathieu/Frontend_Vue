@@ -16,13 +16,15 @@ export default[
         type: "password",
         name: "password",
         label: "Votre mot de passe",
-        validation: "required"
+        validation: "required",
+        validationName:"Le mot de passe"
     },
     {
         type: "password",
         name: "password_confirm",
-        label: "Confirmez votre mote de passe",
-        validation: "required|confirm"
+        label: "Confirmez votre mot de passe",
+        validation: "required|confirm",
+        validationName:"Le mot de passe"
     },
     {
         type: "submit",
