@@ -13,6 +13,12 @@ export default[
         validation: "required|email"
     },
     {
+        type:"radio",
+        name:"type_of_user",
+        label:"Je suis :",
+        options: {cli:"client",int:"intérimaire"}
+    },
+    {
         type: "password",
         name: "password",
         label: "Votre mot de passe",
@@ -29,5 +35,5 @@ export default[
     {
         type: "submit",
         name: "Envoyez"
-    }
+    },
 ]
