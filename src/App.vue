@@ -56,9 +56,10 @@
             <a class="button is-primary">
               <strong>Sign up</strong>
             </a>
-            <a class="button is-light">
+            <a class="button is-light modal-button" data-target="modal" aria-haspopup="true" @click="isActive = !isActive">
               Log in
             </a>
+            <ModalLogin :isActive="isActive"/>
           </div>
         </div>
       </div>
@@ -81,6 +82,22 @@
     </footer>
   </div>
 </template>
+
+<script>
+import ModalLogin from './views/modal-login.vue'
+
+
+export default {
+  name: 'App',
+    data: () => ({
+    values:{},
+    isActive: false,
+  }),
+  components: {
+    ModalLogin
+  }
+}
+</script>
 
 <style>
 @import './assets/Formulate_theme.min.css';
