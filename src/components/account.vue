@@ -11,7 +11,6 @@
 
 <script>
 import Schema from "../schemas/FormShema/Account"
-//import Login from '../components/login.vue'
 import ModalLogin from '@/views/modal-login.vue'
 
 export default {

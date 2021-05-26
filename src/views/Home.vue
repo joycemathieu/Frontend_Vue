@@ -5,9 +5,9 @@
         <h2 class="interim_title">Intérimaire</h2>
         <p>Votre espace pour</p>
         <p>
-          <i class="fas fa-user-edit"> Gérer votre profil de chercheur d'emploi</i>
-          <i class="fas fa-clipboard-list"> Accéder à vos contrats de travail et bulletin de paie</i>
-          <i class="far fa-question-circle"> Accéder à vos informations de missions</i>
+          <i class="icon-presentation fas fa-user-edit"><span class="txt-presentation"> Gérer votre profil de chercheur d'emploi.</span></i>
+          <i class="icon-presentation fas fa-clipboard-list"><span class="txt-presentation"> Accéder à vos contrats de travail et bulletin de paie.</span></i>
+          <i class="icon-presentation far fa-question-circle"><span class="txt-presentation"> Accéder à vos informations de missions.</span></i>
         </p>
       </div>
       <!-- <background/> -->
@@ -40,5 +40,14 @@ export default {
 .background{
   background-color: #F26522;
   color: #f1f2f2;
+}
+.txt-presentation{
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+.icon-presentation{
+  font-size: 2rem;
+  margin: 10px;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="modal" :class="isActive ? 'is-active' : ''">
-          <div class="modal-background"></div>
+          <div class="modal-background" @click="isActive = false">></div>
               <div class="modal-content">
                   <div class="column">
                     <div class="card">
@@ -25,18 +25,18 @@ import Login from '../components/login.vue'
 export default {
   name: 'modallogin',
     data: () => ({
-    values:{},
+    values: {},
     isActive: false,
   }),
   components: {
     Login
   },
-    props:{
-        isActive:{
-            required:true,
-            type:Boolean,
+props: {
+    isActive: {
+        required: true,
+        type: Boolean,
         }
-    }
+    },
 }
 </script>
 
