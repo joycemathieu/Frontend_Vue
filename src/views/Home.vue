@@ -3,7 +3,7 @@
     <div class="columns">
       <div class="background column is-6 is-offset-1">
         <h2 class="interim_title">Intérimaire</h2>
-        <p>Votre espace pour</p>
+        <p class="interim_subtitle">Votre espace pour</p>
         <p>
           <i class="icon-presentation fas fa-user-edit"><span class="txt-presentation"> Gérer votre profil de chercheur d'emploi.</span></i>
           <i class="icon-presentation fas fa-clipboard-list"><span class="txt-presentation"> Accéder à vos contrats de travail et bulletin de paie.</span></i>
@@ -49,5 +49,12 @@ export default {
 .icon-presentation{
   font-size: 2rem;
   margin: 10px;
+}
+.interim_title{
+  font-size:4rem;
+  margin:10px;
+}
+.interim_subtitle{
+  margin:10px;
 }
 </style>
