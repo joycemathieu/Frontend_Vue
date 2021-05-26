@@ -1,32 +1,123 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+
+    <!-- NAVBAR -->
+    <nav id="nav" class="navbar">
+      <div class="navbar-brand">
+        <router-link class="navbar-item" to="/" >
+          <img class="logo" src="@/assets/logo-horizontal.svg" width="300">
+        </router-link>
+        <div class="navbar-menu">
+          <div class="navbar-start">
+            <router-link class="navbar-item" to="/">Accueil</router-link>
+            <router-link class="navbar-item" to="/SignUp">Sign Up</router-link>
+            <router-link class="navbar-item" to="/interimaire">Interimaire</router-link>
+
+            <!-- TESTS  -->
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">
+                Tests Views
+              </a>
+
+              <div class="navbar-dropdown">
+                <router-link class="navbar-item" to="/test/form">
+                  All Form Inputs
+                </router-link>
+                <router-link class="navbar-item" to="/test/tabs">
+                  Tabs
+                </router-link>
+                <router-link class="navbar-item" to="/test/skills">
+                  Skills
+                </router-link>
+              </div>
+            </div>
+
+            <!-- DOCS -->
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">
+                Docs
+              </a>
+
+              <div class="navbar-dropdown">
+                <a class="navbar-item" href="https://bulma.io/documentation/"  target="_blank">
+                  <img src="https://bulma.io/favicons/favicon.ico?v=201701041855" width="20"/> Bulma
+                </a>
+                <a class="navbar-item" href="https://vueformulate.com/guide/"  target="_blank">
+                  <img src="https://vueformulate.com/favicon.ico" width="20"/> VueFormulate
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <a class="button is-primary">
+              <strong>Sign up</strong>
+            </a>
+            <a class="button is-light modal-button" data-target="modal" aria-haspopup="true" @click="isActive = !isActive">
+              Log in
+            </a>
+            <ModalLogin :isActive="isActive"/>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="section">
+      <div class="container">
+          <router-view/>
+      </div>
+
     </div>
-    <router-view/>
+
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          <strong>Interim+</strong>
+        </p>
+      </div>
+    </footer>
   </div>
 </template>
 
+<script>
+import ModalLogin from './views/modal-login.vue'
+
+
+export default {
+  name: 'App',
+    data: () => ({
+    values:{},
+    isActive: false,
+  }),
+  components: {
+    ModalLogin
+  }
+}
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+@import './assets/Formulate_theme.min.css';
+.logo {
+  scale: 2;
 }
 
-#nav {
-  padding: 30px;
+.navbar {
+  height: 100px
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
 </style>
